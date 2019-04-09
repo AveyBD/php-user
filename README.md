@@ -1,66 +1,194 @@
-# [Start Bootstrap - Blog Post](https://startbootstrap.com/template-overviews/blog-post/)
+# Database
+ ```sql
+-- phpMyAdmin SQL Dump
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jun 15, 2018 at 05:57 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
-[Blog Post](http://startbootstrap.com/template-overviews/blog-post/) is a basic blog post HTML starter template for [Bootstrap](http://getbootstrap.com/) created by [Start Bootstrap](http://startbootstrap.com/).
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
 
-## Preview
 
-[![Blog Post Preview](https://startbootstrap.com/assets/img/templates/blog-post.jpg)](https://blackrockdigital.github.io/startbootstrap-blog-post/)
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT = @@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS = @@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION = @@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-**[View Live Preview](https://blackrockdigital.github.io/startbootstrap-blog-post/)**
+--
+-- Database: `armentum`
+--
 
-## Status
+-- --------------------------------------------------------
 
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/BlackrockDigital/startbootstrap-blog-post/master/LICENSE)
-[![npm version](https://img.shields.io/npm/v/startbootstrap-blog-post.svg)](https://www.npmjs.com/package/startbootstrap-blog-post)
-[![Build Status](https://travis-ci.org/BlackrockDigital/startbootstrap-blog-post.svg?branch=master)](https://travis-ci.org/BlackrockDigital/startbootstrap-blog-post)
-[![dependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-blog-post/status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-blog-post)
-[![devDependencies Status](https://david-dm.org/BlackrockDigital/startbootstrap-blog-post/dev-status.svg)](https://david-dm.org/BlackrockDigital/startbootstrap-blog-post?type=dev)
+--
+-- Table structure for table `admin`
+--
 
-## Download and Installation
+CREATE TABLE `admin`
+(
+    `id`       int(11)     NOT NULL,
+    `username` varchar(50) NOT NULL,
+    `email`    varchar(50) NOT NULL,
+    `password` varchar(50) NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 
-To begin using this template, choose one of the following options to get started:
-* [Download the latest release on Start Bootstrap](https://startbootstrap.com/template-overviews/blog-post/)
-* Install via npm: `npm i startbootstrap-blog-post`
-* Clone the repo: `git clone https://github.com/BlackrockDigital/startbootstrap-blog-post.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/BlackrockDigital/startbootstrap-blog-post)
+--
+-- Dumping data for table `admin`
+--
 
-## Usage
+INSERT INTO `admin` (`id`, `username`, `email`, `password`)
+VALUES (1, 'admin', 'admin@admin.com', '9ae2be73b58b565bce3e47493a56e26a');
 
-### Basic Usage
+-- --------------------------------------------------------
 
-After downloading, simply edit the HTML and CSS files included with the template in your favorite text editor to make changes. These are the only files you need to worry about, you can ignore everything else! To preview the changes you make to the code, you can open the `index.html` file in your web browser.
+--
+-- Table structure for table `deleteduser`
+--
 
-### Advanced Usage
+CREATE TABLE `deleteduser`
+(
+    `id`      int(11)     NOT NULL,
+    `email`   varchar(50) NOT NULL,
+    `deltime` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 
-After installation, run `npm install` and then run `gulp dev` which will open up a preview of the template in your default browser, watch for changes to core template files, and live reload the browser when changes are saved. You can view the `gulpfile.js` to see which tasks are included with the dev environment.
+-- --------------------------------------------------------
 
-You must have npm and Gulp installed globally on your machine in order to use these features.
+--
+-- Table structure for table `feedback`
+--
 
-## Troubleshooting and Help
+CREATE TABLE `feedback`
+(
+    `id`           int(11)      NOT NULL,
+    `sender`       varchar(50)  NOT NULL,
+    `reciver`      varchar(50)  NOT NULL,
+    `title`        varchar(100) NOT NULL,
+    `feedbackdata` varchar(500) NOT NULL,
+    `attachment`   varchar(50)  NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 
-Start Bootstrap has a public Slack channel which is a great place to ask questions about this template and all things related to Start Bootstrap.
+-- --------------------------------------------------------
 
-**[Click here to join the Slack channel!](https://startbootstrap-slack.herokuapp.com/)**
+--
+-- Table structure for table `notification`
+--
 
-## Bugs and Issues
+CREATE TABLE `notification`
+(
+    `id`          int(11)     NOT NULL,
+    `notiuser`    varchar(50) NOT NULL,
+    `notireciver` varchar(50) NOT NULL,
+    `notitype`    varchar(50) NOT NULL,
+    `time`        timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/BlackrockDigital/startbootstrap-blog-post/issues) here on GitHub or leave a comment on the [template overview page at Start Bootstrap](http://startbootstrap.com/template-overviews/blog-post/).
+-- --------------------------------------------------------
 
-## About
+--
+-- Table structure for table `users`
+--
 
-Start Bootstrap is an open source library of free Bootstrap templates and themes. All of the free templates and themes on Start Bootstrap are released under the MIT license, which means you can use them for any purpose, even for commercial projects.
+CREATE TABLE `users`
+(
+    `id`          int(11)     NOT NULL,
+    `name`        varchar(50) NOT NULL,
+    `email`       varchar(50) NOT NULL,
+    `password`    varchar(50) NOT NULL,
+    `gender`      varchar(50) NOT NULL,
+    `mobile`      varchar(50) NOT NULL,
+    `designation` varchar(50) NOT NULL,
+    `image`       varchar(50) NOT NULL,
+    `status`      int(10)     NOT NULL
+) ENGINE = InnoDB
+  DEFAULT CHARSET = latin1;
 
-* https://startbootstrap.com
-* https://twitter.com/SBootstrap
+--
+-- Indexes for dumped tables
+--
 
-Start Bootstrap was created by and is maintained by **[David Miller](http://davidmiller.io/)**, Owner of [Blackrock Digital](http://blackrockdigital.io/).
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+    ADD PRIMARY KEY (`id`);
 
-* http://davidmiller.io
-* https://twitter.com/davidmillerskt
-* https://github.com/davidtmiller
+--
+-- Indexes for table `deleteduser`
+--
+ALTER TABLE `deleteduser`
+    ADD PRIMARY KEY (`id`);
 
-Start Bootstrap is based on the [Bootstrap](http://getbootstrap.com/) framework created by [Mark Otto](https://twitter.com/mdo) and [Jacob Thorton](https://twitter.com/fat).
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+    ADD PRIMARY KEY (`id`);
 
-## Copyright and License
+--
+-- Indexes for table `notification`
+--
+ALTER TABLE `notification`
+    ADD PRIMARY KEY (`id`);
 
-Copyright 2013-2019 Blackrock Digital LLC. Code released under the [MIT](https://github.com/BlackrockDigital/startbootstrap-blog-post/blob/gh-pages/LICENSE) license.
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+    ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 2;
+
+--
+-- AUTO_INCREMENT for table `deleteduser`
+--
+ALTER TABLE `deleteduser`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 21;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 19;
+
+--
+-- AUTO_INCREMENT for table `notification`
+--
+ALTER TABLE `notification`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 18;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+    MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,
+    AUTO_INCREMENT = 20;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT = @OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS = @OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION = @OLD_COLLATION_CONNECTION */;
+
+```
